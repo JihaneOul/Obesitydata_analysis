@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Predict Obesity</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+
+<body>
+	<h1>Form Predict Obesity</h1>  
+  <div id="prediction"> 
+    <form name="form" id="form"  action="{{ url_for('predict')}}" method="post">
+            
+            <label for="gender">Gender:</label>
+            <select name="gender" required="required">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+          
+            <input type="text" name="age" id="age" placeholder="Age" required="required" />
+           
+            <input type="text" name="Height" id="Height" placeholder="Height (meter)" required="required" />
+        		
+            <input type="text" name="Weight" id="Weight"placeholder="Weight (KG)" required="required" />
+
+            <label for="family_history_with_overweight">Family history with overweight:</label>
+            
+            <select name="family_history_with_overweight" id="family_history_with_overweight" required="required">
+                <option value="yes">yes</option>
+                <option value="no">no</option>
+            </select>
+           
+
+            <label for="FAVC">Frequent consumption of high caloric food:</label>
+            <select name="FAVC" id="FAVC" required="required">
+                <option value="yes">yes</option>
+                <option value="no">no</option>
+            </select>
+
+            <label for="FCVC">Frequency of consumption of vegetables:</label>
+            <select name="FCVC" id="FCVC"required="required">
+                <option value="1">Never</option>
+                <option value="2">Sometimes</option>
+                <option value="3">Always</option>
+            </select>
+
+            <label for="NCP">Number of daily meals:</label>
+            <select name="NCP" id="NCP" required="required">
+                <option value="1">1 and 2</option>
+                <option value="2">Three</option>
+                <option value="3">More than 3</option>
+            </select>
+
+            <label for="CAEC">Frequency of Consumption of food between meals:</label>
+            <select name="CAEC" id="CAEC" required="required">
+                <option value="no">No</option>
+                <option value="Sometimes">Sometimes</option>
+                <option value="Frequently">Frequently</option>
+                <option value="Always">Always</option>
+            </select>
+
+            <label for="SMOKE">SMOKE:</label>
+            <select name="SMOKE" id="SMOKE" required="required">
+                <option value="yes">yes</option>
+                <option value="no">no</option>
+            </select>
+
+            <label for="CH2O">Consumption of water:</label>
+            <select name="CH2O" id="CH2O" required="required">
+                <option value="1">Less than a liter</option>
+                <option value="2">Between 1 and 2 L</option>
+                <option value="3">More than 2 L</option>
+            </select>
+
+            <label for="SCC">Daily calorie monitoring :</label>
+            <select name="SCC" id="SCC" required="required">
+                <option value="yes">yes</option>
+                <option value="no">no</option>
+            </select>
+
+            <label for="FAF">Frequency of physical activity :</label>
+            <select name="FAF" id="FAF" required="required">
+                <option value="0">no</option>
+                <option value="1">1-2days</option>
+                <option value="2">2-4 days</option>
+                <option value="3">4-5 days</option>
+            </select>
+
+            <label for="TUE">Time spent on technological devices :</label>
+            <select name="TUE" id="TUE" required="required">
+                <option value="0">0-2 hours</option>
+                <option value="1">3-5 hours </option>
+                <option value="2">more than 5 hours</option>
+            </select>
+
+            <label for="CALC">Frequency of alcohol Consumption :</label>
+            <select name="CALC" id="CALC" required="required">
+                <option value="no">No</option>
+                <option value="Sometimes">Sometimes</option>
+                <option value="Frequently">Frequently</option>
+                <option value="Always">Always</option>
+            </select>
+
+            <label for="MTRANS">Type of transport used :</label>
+            <select name="MTRANS" id="MTRANS" required="required">
+                <option value="Public_Transportation">Public Transportation</option>
+                <option value="Walking">Walking</option>
+                <option value="Automobile">Automobile</option>
+                <option value="Motorbike">Motorbike</option>
+                <option value="Bike">Bike</option>
+            </select>
+
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict the type of obesity</button>
+    </form>
+
+   <br>
+   <br>
+   {{ predictionValue }}
+</div>
+
+</body>
+</html>
