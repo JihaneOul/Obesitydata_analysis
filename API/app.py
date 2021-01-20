@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, flash, jsonify
+from flask import Flask, request, redirect, url_for, flash, jsonify,render_template, url_for
 import numpy as np
 import json
 import joblib
@@ -6,29 +6,22 @@ import joblib
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
-def homepage():
-    return 'Hello this is the API'
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 
 @app.route('/predict', methods=['POST'])
-def pred():
-    data = request.get_json()
-    prediction = Model.predict(data)
+def predict():
+   
+    Model = joblib.load(open('Model.sav', 'rb'))
+    features = [str(x) for x in request.form.values()]
+    final_features = [np.array(features)]
+    output = Model.predict(final_features)
 
-    #Making sure the target values are also under json format. 
+   
+    return render_template('index.html', predictionValue='{}'.format(output[0]))
 
-    NObesity = {
-        0:"Insufficient Weight", 
-        1:"Normal Weight", 
-        2:"Overweight Level I", 
-        3:"Overweight Level II",
-        4:"Obesity Type I",
-        5:"Obesity Type II",
-        6:"Obesity Type III"}
-    return jsonify(prediction)
 
 if __name__ == '__main__':
-    Model = joblib.load(open('Model.sav', 'rb'))
-    print('Model loaded')
     app.run(port=5000,debug=True, host='localhost')
